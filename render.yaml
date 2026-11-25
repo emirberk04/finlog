@@ -1,0 +1,24 @@
+# Render blueprint (free web service). Secrets are added in the Render dashboard.
+services:
+  - type: web
+    name: finlog
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: DATABASE_URL
+        sync: false
+      - key: KAFKA_BOOTSTRAP_SERVERS
+        sync: false
+      - key: KAFKA_SECURITY_PROTOCOL
+        value: SSL
+      - key: KAFKA_CA_CERT
+        sync: false
+      - key: KAFKA_CLIENT_CERT
+        sync: false
+      - key: KAFKA_CLIENT_KEY
+        sync: false

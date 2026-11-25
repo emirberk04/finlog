@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinLog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>FinLog</h1>
+    <span class="sub">Financial Transaction Logging Service</span>
+    <span id="health" class="health">checking...</span>
+  </header>
+
+  <main>
+    <section class="left">
+      <div class="box">
+        <h2>Account</h2>
+        <select id="accountSelect"></select>
+        <p id="accountInfo" class="info"></p>
+        <details>
+          <summary>New account</summary>
+          <form id="accountForm">
+            <label>Owner name <input name="owner_name" required></label>
+            <label>Currency
+              <select name="currency"><option>TRY</option><option>USD</option><option>EUR</option></select>
+            </label>
+            <label>Opening balance <input name="opening_balance" type="number" step="0.01" value="0"></label>
+            <button type="submit">Create account</button>
+          </form>
+        </details>
+      </div>
+
+      <div class="box">
+        <h2>New transaction</h2>
+        <form id="txForm">
+          <label>Type
+            <select name="type">
+              <option>DEPOSIT</option><option>WITHDRAWAL</option><option>PAYMENT</option>
+            </select>
+          </label>
+          <label>Amount <input name="amount" type="number" step="0.01" placeholder="0.00"></label>
+          <label>Category
+            <select name="category">
+              <option>salary</option><option>food</option><option>rent</option><option>bills</option>
+              <option>transport</option><option>shopping</option><option>education</option><option>other</option>
+            </select>
+          </label>
+          <label>Description <input name="description" maxlength="200"></label>
+          <button type="submit">Send</button>
+        </form>
+        <p id="txMsg" class="msg"></p>
+      </div>
+
+      <div class="box">
+        <h2>Summary</h2>
+        <table class="small" id="summary"></table>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="box">
+        <h2>Transactions</h2>
+        <form id="filterForm" class="filters">
+          <select name="type"><option value="">all types</option><option>DEPOSIT</option><option>WITHDRAWAL</option><option>PAYMENT</option></select>
+          <select name="status"><option value="">all status</option><option>PENDING</option><option>COMPLETED</option><option>REJECTED</option><option>FAILED</option></select>
+          <input name="min_amount" type="number" placeholder="min amount">
+          <input name="max_amount" type="number" placeholder="max amount">
+          <input name="date_from" type="date" title="from">
+          <input name="date_to" type="date" title="to">
+          <button type="submit">Filter</button>
+          <button type="button" id="clearFilter" class="plain">Clear</button>
+        </form>
+        <p id="filterMsg" class="msg"></p>
+        <table id="txTable">
+          <thead><tr><th>#</th><th>Date</th><th>Type</th><th>Category</th><th class="num">Amount</th><th>Status</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p id="txCount" class="info"></p>
+      </div>
+
+      <div class="box" id="logBox" hidden>
+        <h2>Log of transaction <span id="logTxId"></span></h2>
+        <ul id="logList"></ul>
+      </div>
+
+      <div class="box">
+        <h2>Kafka activity <span class="info">(last messages, updates every 2 s)</span></h2>
+        <ul id="activity" class="activity"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

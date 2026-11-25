@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #222;
+  background: #f3f4f6;
+}
+
+header {
+  background: #1f3a5f;
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+header h1 { margin: 0; font-size: 22px; }
+header .sub { opacity: 0.8; }
+.health { margin-left: auto; font-size: 12px; }
+
+main {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  padding: 16px 20px;
+}
+@media (max-width: 800px) {
+  main { grid-template-columns: 1fr; }
+}
+
+.box {
+  background: white;
+  border: 1px solid #d5d8dc;
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+h2 { font-size: 15px; margin: 0 0 10px; }
+
+label { display: block; margin-bottom: 8px; }
+label input, label select, .box > select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 3px;
+  padding: 5px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}
+button {
+  background: #1f3a5f;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+button.plain { background: #ddd; color: #222; }
+button.link { background: none; color: #1f3a5f; padding: 0; text-decoration: underline; }
+
+details { margin-top: 8px; }
+summary { cursor: pointer; color: #1f3a5f; margin-bottom: 8px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.filters input, .filters select { padding: 4px; border: 1px solid #bbb; border-radius: 3px; }
+.filters input[type=number] { width: 95px; }
+.filters input[type=date] { width: 125px; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 5px 6px; border-bottom: 1px solid #eee; }
+th { background: #fafafa; font-weight: bold; }
+td.num, th.num { text-align: right; }
+table.small td:last-child { text-align: right; }
+
+.status { font-size: 12px; font-weight: bold; }
+.status.PENDING { color: #b7791f; }
+.status.COMPLETED { color: #2f855a; }
+.status.REJECTED { color: #c53030; }
+.status.FAILED { color: #7b341e; }
+
+.info { color: #666; font-size: 12px; font-weight: normal; }
+.msg { min-height: 16px; margin: 8px 0 0; }
+.msg.error { color: #c53030; }
+.msg.ok { color: #2f855a; }
+
+.activity { list-style: none; padding: 0; margin: 0; font-family: monospace; font-size: 12px;
+            max-height: 220px; overflow-y: auto; }
+.activity li { padding: 3px 0; border-bottom: 1px dotted #ddd; }
+.activity .sent { color: #1f3a5f; }
+.activity .received { color: #2f855a; }
+
+#logList { padding-left: 18px; margin: 0; }
+#logList li { margin-bottom: 4px; }
